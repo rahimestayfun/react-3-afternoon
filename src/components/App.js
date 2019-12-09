@@ -22,25 +22,24 @@ class App extends Component {
   }
   
   componentDidMount() {
-    axios.get("http://practiceapi.devmountain.com/api/posts").then((response)=>{
+    axios.get("https://practiceapi.devmountain.com/api/posts").then((response)=>{
       this.setState({posts:response.data})
     });
   }
 
   updatePost(id,text) {
     console.log(text)
-    axios.put(`http://practiceapi.devmountain.com/api/posts?id=${id}`, { text }).then((response)=>{
+    axios.put(`https://practiceapi.devmountain.com/api/posts?id=${id}`, { text }).then((response)=>{
       this.setState({posts:response.data})
-
     })
-    
   }
+
 
   deletePost(id) {
     // axios.delete(`http://practiceapi.devmountain.com`).then((response)=>{
     //   this.setState({posts: response.data});
     // })
-    axios.get("http://practiceapi.devmountain.com/api/posts").then((response)=>{
+    axios.delete(`https://practiceapi.devmountain.com/api/posts?id=${id}`).then((response)=>{
       this.setState({posts:response.data})
     });
 
@@ -70,8 +69,7 @@ class App extends Component {
                   date={element.date} 
                   id= {element.id} 
                   updatePostFn= {this.updatePost} 
-                  deletePostFn= {this.deletePost}  
-                  
+                  deletePostFn= {this.deletePost}      
             /> 
           ))
           }
